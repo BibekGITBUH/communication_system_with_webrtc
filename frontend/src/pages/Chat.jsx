@@ -116,11 +116,15 @@ const Chat = ({ user }) => {
       pcRef.current = new RTCPeerConnection(iceServers);
       stream.getTracks().forEach(track => pcRef.current.addTrack(track, stream));
       pcRef.current.ontrack = (e) => {
-        if (e.track && e.track.kind === 'video') {
-          setRemoteStream(new MediaStream([e.track]));
-        } else if (e.streams && e.streams[0]) {
-          setRemoteStream(e.streams[0]);
-        }
+        setRemoteStream(prev => {
+          const tracks = prev ? prev.getTracks() : [];
+          // Avoid duplicates
+          const newTracks = [...tracks];
+          if (!newTracks.find(t => t.id === e.track.id)) {
+            newTracks.push(e.track);
+          }
+          return new MediaStream(newTracks);
+        });
       };
       pcRef.current.onicecandidate = (e) => {
         if (e.candidate) {
@@ -183,11 +187,15 @@ const Chat = ({ user }) => {
     pcRef.current = new RTCPeerConnection(iceServers);
     stream.getTracks().forEach(track => pcRef.current.addTrack(track, stream));
     pcRef.current.ontrack = (e) => {
-      if (e.track && e.track.kind === 'video') {
-        setRemoteStream(new MediaStream([e.track]));
-      } else if (e.streams && e.streams[0]) {
-        setRemoteStream(e.streams[0]);
-      }
+      setRemoteStream(prev => {
+        const tracks = prev ? prev.getTracks() : [];
+        // Avoid duplicates
+        const newTracks = [...tracks];
+        if (!newTracks.find(t => t.id === e.track.id)) {
+          newTracks.push(e.track);
+        }
+        return new MediaStream(newTracks);
+      });
     };
     pcRef.current.onicecandidate = (e) => {
       if (e.candidate) {
