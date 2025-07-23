@@ -15,7 +15,7 @@
 
 
 # choco install mkcert
-# mkcert --version in all 
+# mkcert --version //check in all directory 
 
 # or go to :
 # https://github.com/FiloSottile/mkcert/releases
@@ -24,12 +24,12 @@
 # place it in C:\Users\jhon\mkcert
 # add this path to env variable 
 # check:
-# mkcert --version //in all directory 
+# mkcert --version //check in all directory 
 
 
-# in root folder
-# mkcert -install
-#  cd frontend/certs
+# in root folder run this command
+# mkcert -install    // then
+#  cd frontend/certs   // create certs folder in frontend and also in cd backend/uploads   //create uploads folder in backend
 #    mkcert 192.168.x.x localhost 127.0.0.1
 # -Replace 192.168.x.x with your actual LAN IP
 # -This will generate two files:
