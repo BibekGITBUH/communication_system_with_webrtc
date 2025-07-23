@@ -1,0 +1,51 @@
+## how to run the project
+
+
+
+
+
+
+
+
+
+
+# install docker in system
+# >docker compose up -d
+
+
+
+# choco install mkcert
+# mkcert --version in all 
+
+# or go to :
+# https://github.com/FiloSottile/mkcert/releases
+# and download: mkcert-v1.4.4-windows-amd64\
+# remane this to : mkcert.exe
+# place it in C:\Users\jhon\mkcert
+# add this path to env variable 
+# check:
+# mkcert --version //in all directory 
+
+
+# in root folder
+# mkcert -install
+#  cd frontend/certs
+#    mkcert 192.168.x.x localhost 127.0.0.1
+# -Replace 192.168.x.x with your actual LAN IP
+# -This will generate two files:
+#    -192.168.x.x+2-key.pem
+#    -192.168.x.x+2.pem
+
+# Rename them for clarity:
+# cd frontend/certs
+# ren 192.168.101.4+2-key.pem localhost-key.pem
+# ren 192.168.101.4+2.pem localhost.pem
+
+
+# cd backend 
+# npm run dev 
+
+# cd frontend
+# npm run dev -- -- host 
+# or
+# npm run dev -- -- host 0.0.0.0
